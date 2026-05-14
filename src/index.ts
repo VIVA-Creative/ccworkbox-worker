@@ -2,7 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
 import { z } from "zod";
 
-const CCWORKBOX_API = "http://tudorhome.duckdns.org:4014";
+const CCWORKBOX_API = "https://florida.vivabridge.studio";
 
 export class CCWorkboxMCP extends McpAgent {
   server = new McpServer({
