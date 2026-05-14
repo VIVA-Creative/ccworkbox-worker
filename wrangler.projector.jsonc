@@ -1,12 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ccworkbox-viva",
+  "name": "ccworkbox-projector",
   "main": "src/index.ts",
   "compatibility_date": "2025-03-10",
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
-    "CCWORKBOX_API": "https://florida.vivabridge.studio",
-    "CCWORKBOX_SERVICE": "ccworkbox-viva"
+    "CCWORKBOX_API": "https://rockville.vivabridge.studio",
+    "CCWORKBOX_SERVICE": "ccworkbox-projector"
   },
   "migrations": [
     {

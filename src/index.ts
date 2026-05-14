@@ -2,8 +2,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { McpAgent } from "agents/mcp";
 import { z } from "zod";
 
-const CCWORKBOX_API = "http://tudorhome.duckdns.org:4014";
-
 export class CCWorkboxMCP extends McpAgent {
   server = new McpServer({
     name: "CC's Workbox (Viva)",
@@ -23,7 +21,7 @@ export class CCWorkboxMCP extends McpAgent {
       },
       async ({ instructions, work_dir, task_label }) => {
         try {
-          const response = await fetch(`${CCWORKBOX_API}/task`, {
+          const response = await fetch(`${env.CCWORKBOX_API}/task`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -45,7 +43,7 @@ export class CCWorkboxMCP extends McpAgent {
       { task_id: z.string().describe("The task_id returned by send_task.") },
       async ({ task_id }) => {
         try {
-          const response = await fetch(`${CCWORKBOX_API}/task/${task_id}/status`, {
+          const response = await fetch(`${env.CCWORKBOX_API}/task/${task_id}/status`, {
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${env?.CCWORKBOX_TOKEN || ""}`,
@@ -65,7 +63,7 @@ export class CCWorkboxMCP extends McpAgent {
       { task_id: z.string().describe("The task_id returned by send_task.") },
       async ({ task_id }) => {
         try {
-          const response = await fetch(`${CCWORKBOX_API}/task/${task_id}/results`, {
+          const response = await fetch(`${env.CCWORKBOX_API}/task/${task_id}/results`, {
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${env?.CCWORKBOX_TOKEN || ""}`,
@@ -85,7 +83,7 @@ export class CCWorkboxMCP extends McpAgent {
       { task_id: z.string().describe("The task_id returned by send_task.") },
       async ({ task_id }) => {
         try {
-          const response = await fetch(`${CCWORKBOX_API}/task/${task_id}/log`, {
+          const response = await fetch(`${env.CCWORKBOX_API}/task/${task_id}/log`, {
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${env?.CCWORKBOX_TOKEN || ""}`,
@@ -105,7 +103,7 @@ export class CCWorkboxMCP extends McpAgent {
       { limit: z.number().optional().describe("Max tasks to return (default 10).") },
       async ({ limit }) => {
         try {
-          const response = await fetch(`${CCWORKBOX_API}/tasks?limit=${limit || 10}`, {
+          const response = await fetch(`${env.CCWORKBOX_API}/tasks?limit=${limit || 10}`, {
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${env?.CCWORKBOX_TOKEN || ""}`,
@@ -125,7 +123,7 @@ export class CCWorkboxMCP extends McpAgent {
       { task_id: z.string().describe("The task_id to cancel.") },
       async ({ task_id }) => {
         try {
-          const response = await fetch(`${CCWORKBOX_API}/task/${task_id}/cancel`, {
+          const response = await fetch(`${env.CCWORKBOX_API}/task/${task_id}/cancel`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -151,7 +149,7 @@ export default {
     }
 
     if (url.pathname === "/health") {
-      return new Response(JSON.stringify({ status: "ok", service: "ccworkbox-viva" }), {
+      return new Response(JSON.stringify({ status: "ok", service: env.CCWORKBOX_SERVICE }), {
         headers: { "Content-Type": "application/json" },
       });
     }
