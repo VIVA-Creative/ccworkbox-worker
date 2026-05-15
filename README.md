@@ -28,7 +28,7 @@ The Worker exposes the standard six tools (`send_task`, `get_status`, `get_resul
 
 | Worker name | Backing Workbox | Backend URL |
 |---|---|---|
-| `ccworkbox-viva` | Florida Mac | `http://tudorhome.duckdns.org:4014` |
+| `viva-ccworkbox` | Florida Mac | `http://tudorhome.duckdns.org:4014` |
 | `ccworkbox-rockville` (planned) | Rockville machine | via Cloudflare Tunnel |
 
 ## Required secret
