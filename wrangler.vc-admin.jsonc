@@ -1,0 +1,38 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vc-admin-bridge",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "CCWORKBOX_API": "https://vc-admin.vivabridge.studio",
+    "CCWORKBOX_SERVICE": "vc-admin-bridge"
+  },
+  "migrations": [
+    {
+      "new_sqlite_classes": ["CCWorkboxMCP"],
+      "tag": "v1"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "CCWorkboxMCP",
+        "name": "MCP_OBJECT"
+      }
+    ]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "OAUTH_KV",
+      "id": "8d1a5112a16748fd999cb701121308cf"
+    },
+    {
+      "binding": "ALLOWLIST",
+      "id": "c8a2bcd8fbec43c1a7f47212b2bbb0bd"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
