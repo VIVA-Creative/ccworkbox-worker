@@ -1,0 +1,38 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vc-slot3-bridge",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "CCWORKBOX_API": "https://vc-slot3.vivabridge.studio",
+    "CCWORKBOX_SERVICE": "vc-slot3-bridge"
+  },
+  "migrations": [
+    {
+      "new_sqlite_classes": ["CCWorkboxMCP"],
+      "tag": "v1"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "CCWorkboxMCP",
+        "name": "MCP_OBJECT"
+      }
+    ]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "OAUTH_KV",
+      "id": "8d1a5112a16748fd999cb701121308cf"
+    },
+    {
+      "binding": "ALLOWLIST",
+      "id": "371cef5ae22c47409aeff048e8e2ea03"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
